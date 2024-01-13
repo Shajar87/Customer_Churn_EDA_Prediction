@@ -1,5 +1,3 @@
-# Streamlit_App
-
 # Bank Customer Churn EDA and Prediction
 
 **Overview:**
