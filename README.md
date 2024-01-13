@@ -26,7 +26,8 @@ Bank Customer Churn EDA and Prediction is a data science project that combines e
 
 5. **Contact Us Form:**
    - Integration of a "Contact Us" form for user inquiries and submissions. (backend work is left as of now.)
-**How to Use:**
+     
+6. **How to Use:**
 
 1. Clone the repository to your local machine.
 2. Install the required dependencies using `pip install -r requirements.txt`.
