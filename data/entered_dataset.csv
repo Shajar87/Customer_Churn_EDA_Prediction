@@ -1,2 +1,2 @@
 CreditScore,Age,Tenure,Balance,NumOfProducts,HasCrCard,IsActiveMember,EstimatedSalary,Complain,Satisfaction Score,Point Earned
-0,0,0,0,0,1,1,0,1,0,0
+400,24,2,99999,3,1,1,50000,0,4,450
