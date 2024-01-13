@@ -28,14 +28,14 @@ Bank Customer Churn EDA and Prediction is a data science project that combines e
 - Integrated a user-friendly "Contact Us" form for inquiries and submissions (backend work pending).
 
      
-6. **How to Use:**
+### 6. How to Use:
 
 1. Clone the repository to your local machine.
 2. Install the required dependencies using `pip install -r requirements.txt`.
 3. Run the Streamlit app with `streamlit run app.py`.
    
 
-**Contributing:**
+### 7. Contributing:
 
 - Fork the repository.
 - Create a new branch for your feature or bug fix.
