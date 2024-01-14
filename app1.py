@@ -4,10 +4,10 @@ import matplotlib.pyplot as plt
 from plotly import graph_objs as go
 import plotly.express as px
 import seaborn as sns
-from main_module1 import predict 
+from main import predict 
 
 # reading csv file
-data = pd.read_csv("data\Customer-Churn-Records.csv")
+data = pd.read_csv("Data\Customer_Churn_Records.csv")
 df = data.head(5)
 
 #set title of the App
@@ -16,52 +16,64 @@ nav_options = ["Home", "Predictor", "Contact Us"]
 nav = st.sidebar.radio("Navigation", nav_options)
 
 
-#If "Home" is selected as the navigator 
 if nav == 'Home':
     st.image("Data\churn_image.png")
-    st.write(f' ### Welcome to Customer Churn Predictor App.')
+    st.write(f' ### :red[Welcome to Customer Churn Predictor App.]')
     st.write("""Your go-to solution for predicting and preventing customer churn in the banking sector. 
-             Our cutting-edge app utilizes a powerful machine learning model 
+             Our cutting-edge app utilizes a powerful machine learning method :blue[**"Random Forest"**] 
 that has been meticulously trained on an extensive dataset of bank customers,
 providing you with invaluable insights to proactively retain your customer base.""")
+    st.divider()
 
     if st.checkbox("Show me the dataset."):
                     st.table(df)
                      
                     if st.checkbox("Want to see some graphs?"): 
-                        graph = st.selectbox("Select any one graph to see.",['Churn Rate by Age','Churn Rate by Active Member Status'])
-                        if graph == 'Churn Rate by Active Member Status':
-                            fig, ax = plt.subplots()    
-                            churn_rate_by_active = df.groupby('IsActiveMember')['Exited'].mean().reset_index()
+                        graph = st.selectbox("Select any one graph to see.",['Churn Rate by Age','Churn Rate by Complain Status'])
+                        if graph == 'Churn Rate by Complain Status':
+                            fig, ax = plt.subplots()
+
+                            #plt.figure(figsize=(10, 6))
+    
+                            churn_rate_by_Complain = df.groupby('Complain')['Exited'].mean().reset_index()
                             
                             # Bar plot
-                            plt.bar(churn_rate_by_active['IsActiveMember'], churn_rate_by_active['Exited'], color=['skyblue', 'lightcoral'])
+                            plt.bar(churn_rate_by_Complain['Complain'], churn_rate_by_Complain['Exited'], color=['skyblue', 'lightcoral'])
                             
-                            plt.xlabel('Active Member (1) or Not (0)')
+                            plt.xlabel('Complain Status')
                             plt.ylabel('Churn Rate')
-                            plt.title('Churn Rate by Active Member Status')
+                            plt.title('Churn Rate by Complain Status')
                             
                             # Set x-axis ticks and labels
-                            plt.xticks(churn_rate_by_active['IsActiveMember'], ['Not Active', 'Active'])
-                            # Display the plot in Streamlit
+                            plt.xticks(churn_rate_by_Complain['Complain'], ['No Complain', 'Has Complain'])
+                            
                             st.pyplot(fig)
+                            with st.expander("See Explaination:"):
+                                     st.write('''- **Insights:** Customers with active complaints have a higher churn rate. Customers without any complaints have almost negligible churn rate.
+- **Possible Cause:** Active complaints could indicate dissatisfaction with the bank's services, unresolved issues, or a negative customer experience. Customers who have complaints and feel unheard or unsatisfied with the bank's response are more likely to churn.''')
 
                         if graph == 'Churn Rate by Age':
                             type = st.selectbox("What Kind of Graph?",['Interactive','Non-Interactive'])
                             if type == "Non-Interactive":
-                                # Calculate churn rate by age
+                                # Assuming churn_rate_age is your DataFrame
                                 churn_rate_age = data.groupby('Age')['Exited'].mean().reset_index()
 
                                 # Create scatter plot for churn rate by age
                                 fig, ax = plt.subplots()
                                 ax.scatter(churn_rate_age['Age'], churn_rate_age['Exited'], label='Churn Rate by Age', color='blue', alpha=0.7)
 
+                                # Customize the plot
                                 plt.title('Churn Rate by Age')
                                 plt.xlabel('Age')
                                 plt.ylabel('Churn Rate')
                                 plt.legend()
 
+                                # Display the plot in Streamlit
                                 st.pyplot(fig)
+                                with st.expander("See Explaination:"):
+                                     st.write('''- **Insights:** From the scatter plot, it can be seen that
+Customers of age between 45 - 70 have higher tendency to leave the bank.
+- **Possible Cause:** Older customers may be more likely to consider switching banks due to life changes, retirement, or seeking better financial products and services.''')
 
                             if type == "Interactive":
                                 # Calculate churn rate by age
@@ -72,13 +84,22 @@ providing you with invaluable insights to proactively retain your customer base.
                                                 title='Churn Rate by Age')
                                 fig.update_layout(xaxis_title='Age', yaxis_title='Churn Rate')
                                 st.plotly_chart(fig)
+                                with st.expander("See Explaination:"):
+                                     st.write('''- **Insights:** From the scatter plot, it can be seen that
+Customers of age between 45 - 70 have higher tendency to leave the bank.
+- **Possible Cause:** Older customers may be more likely to consider switching banks due to life changes, retirement, or seeking better financial products and services.''')
+
 
 
                     
 
-#If "Predictor" is selected as the navigator 
+
 elif nav == "Predictor":
-    st.header('Predict Customer Churn')
+    st.subheader(":red[Instructions for Making Predictions:]")
+    st.write("""1. Fill in the required values against each field.
+2. Ensure the entered values are accurate and in the appropriate format.
+3. Once all values are entered, You can see your entered values by clicking on **Show Entered Values**" button
+or you can see the predcition directly by clicking on the "**Show Prediction**" button. """)
     column_names = [
         'CreditScore', 'Age', 'Tenure', 'Balance', 
         'NumOfProducts', 'HasCrCard', 'IsActiveMember', 'EstimatedSalary', 
@@ -92,6 +113,9 @@ elif nav == "Predictor":
     for column in column_names:
         st.write(f"### {column}")
         
+        # Display an input field based on the data type
+        
+       
         if column in ['HasCrCard', 'IsActiveMember', 'Complain']:
                 unique_identifier = f"selectbox_{column}"
                 user_input[column] = st.selectbox(f"Select 0 (for No), 1 (for Yes)", [1, 0], key=unique_identifier)
@@ -115,7 +139,7 @@ elif nav == "Predictor":
         user_df.columns = column_names
         st.write("Entered Values as DataFrame:")
         st.write(user_df)
-        user_df.to_csv('data\entered_dataset.csv', index=False)
+        user_df.to_csv('Data\entered_dataset.csv', index=False)
         st.success("Entered Values saved to 'Data\entered_dataset.csv'")
 
 
@@ -125,9 +149,9 @@ elif nav == "Predictor":
         pred_dic = {0:"Customer will not churn.",1:"Customer will churn."}
         st.write(f'## {pred_dic[prediction_scalar]}')
 
-#If "Contact Us" is selected as the navigator 
+
 elif nav == 'Contact Us':
-    st.write(f'### {"Please Fill Out Your Details And Submit it."}')
+    st.write(f'### {"""Want to know more about us! Please Fill Out Your Details And Submit it to us."""}')
     first, last = st.columns(2)
     first.text_input("First Name")
     last.text_input("Last Name")
@@ -136,7 +160,7 @@ elif nav == 'Contact Us':
     email.text_input("Email ID")
     mob.text_input("Mobile Number")
 
-    det = st.columns(2)  
+    det = st.columns(2)  # Assuming you want two columns
     det[0].text_input("What is the purpose of reaching out to us?")
 
 
