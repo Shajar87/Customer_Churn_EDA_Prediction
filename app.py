@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from plotly import graph_objs as go
 import plotly.express as px
 import seaborn as sns
-from main_module1 import predict 
+from main_module import predict 
 
 # reading csv file
 data = pd.read_csv("data\Customer-Churn-Records.csv")
