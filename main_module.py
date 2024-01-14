@@ -1,6 +1,6 @@
 # main_module.py
 import pandas as pd
-from prediction_module1 import make_prediction
+from prediction_module import make_prediction
 
 def predict():
                     # Load your dataset
