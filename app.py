@@ -4,10 +4,10 @@ import matplotlib.pyplot as plt
 from plotly import graph_objs as go
 import plotly.express as px
 import seaborn as sns
-from main import predict 
+from main_module import predict 
 
 # reading csv file
-data = pd.read_csv("Data\Customer_Churn_Records.csv")
+data = pd.read_csv("Customer_Churn_EDA_Prediction\data\Customer-Churn-Records.csv")
 df = data.head(5)
 
 #set title of the App
@@ -17,12 +17,13 @@ nav = st.sidebar.radio("Navigation", nav_options)
 
 
 if nav == 'Home':
-    st.image("Data\churn_image.png")
-    st.write(f' ### :red[Welcome to Customer Churn Predictor App.]')
-    st.write("""Your go-to solution for predicting and preventing customer churn in the banking sector. 
-             Our cutting-edge app utilizes a powerful machine learning method :blue[**"Random Forest"**] 
-that has been meticulously trained on an extensive dataset of bank customers,
-providing you with invaluable insights to proactively retain your customer base.""")
+    with st.container(border= True):
+        st.image("Data\churn_image.png")
+        st.write(f' ### :red[Welcome to Customer Churn Predictor App]')
+        st.write("""Your go-to solution for predicting and preventing customer churn in the banking sector. 
+                Our cutting-edge app utilizes a powerful machine learning method :blue[**"Random Forest"**] 
+    that has been meticulously trained on an extensive dataset of bank customers,
+    providing you with invaluable insights to proactively retain your customer base.""")
     st.divider()
 
     if st.checkbox("Show me the dataset."):
@@ -45,7 +46,7 @@ providing you with invaluable insights to proactively retain your customer base.
                             plt.title('Churn Rate by Complain Status')
                             
                             # Set x-axis ticks and labels
-                            plt.xticks(churn_rate_by_Complain['Complain'], ['No Complain', 'Has Complain'])
+                            plt.xticks(churn_rate_by_Complain['Complain'], ['No Complain', 'Complain'])
                             
                             st.pyplot(fig)
                             with st.expander("See Explaination:"):
@@ -95,11 +96,11 @@ Customers of age between 45 - 70 have higher tendency to leave the bank.
 
 
 elif nav == "Predictor":
-    st.subheader(":red[Instructions for Making Predictions:]")
+    st.subheader(":red[Instructions Before Making Prediction:]")
     st.write("""1. Fill in the required values against each field.
 2. Ensure the entered values are accurate and in the appropriate format.
-3. Once all values are entered, You can see your entered values by clicking on **Show Entered Values**" button
-or you can see the predcition directly by clicking on the "**Show Prediction**" button. """)
+3. Once all values are entered, You can see your entered values by clicking on **Show Entered Values**" button.
+You can see the prediction directly by clicking on the "**Show Prediction**" button. """)
     column_names = [
         'CreditScore', 'Age', 'Tenure', 'Balance', 
         'NumOfProducts', 'HasCrCard', 'IsActiveMember', 'EstimatedSalary', 
@@ -118,15 +119,12 @@ or you can see the predcition directly by clicking on the "**Show Prediction**" 
        
         if column in ['HasCrCard', 'IsActiveMember', 'Complain']:
                 unique_identifier = f"selectbox_{column}"
-                user_input[column] = st.selectbox(f"Select 0 (for No), 1 (for Yes)", [1, 0], key=unique_identifier)
+                user_input[column] = st.selectbox(f"Select 0 (No), 1 (Yes)", [1, 0], key=unique_identifier)
 
         
         else:
             user_input[column] = st.number_input(f"Enter {column}", value=0)
     
-    
-    
-
 
     # Display the entered values
     if st.button("Show Entered Values"):
@@ -142,7 +140,6 @@ or you can see the predcition directly by clicking on the "**Show Prediction**" 
         user_df.to_csv('Data\entered_dataset.csv', index=False)
         st.success("Entered Values saved to 'Data\entered_dataset.csv'")
 
-
     if st.button('Show Prediction'):
         prediction = predict()
         prediction_scalar = int(prediction)
@@ -152,16 +149,18 @@ or you can see the predcition directly by clicking on the "**Show Prediction**" 
 
 elif nav == 'Contact Us':
     st.write(f'### {"""Want to know more about us! Please Fill Out Your Details And Submit it to us."""}')
-    first, last = st.columns(2)
-    first.text_input("First Name")
-    last.text_input("Last Name")
+    with st.container(border= True):
+         
+        first, last = st.columns(2)
+        first.text_input("First Name")
+        last.text_input("Last Name")
 
-    email, mob = st.columns([3, 1])
-    email.text_input("Email ID")
-    mob.text_input("Mobile Number")
+        email, mob = st.columns([3, 1])
+        email.text_input("Email ID")
+        mob.text_input("Mobile Number")
 
-    det = st.columns(2)  # Assuming you want two columns
-    det[0].text_input("What is the purpose of reaching out to us?")
+        det = st.columns(2)  # Assuming you want two columns
+        det[0].text_input("Purpose of reaching out to us?")
 
 
     ag,sub = st.columns(2)
