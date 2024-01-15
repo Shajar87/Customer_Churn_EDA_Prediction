@@ -1,7 +1,6 @@
 import pickle
 import traceback  
 
-
 def make_prediction(df):
     try:
 
