@@ -4,9 +4,9 @@ import traceback
 def make_prediction(df):
     try:
 
-        #Fill missing values
+        #Fill missing values if any
         df.ffill(inplace=True)
-        # Load the model
+        # Load the pre-trained model
         with open(r'model', 'rb') as file:
             loaded_model = pickle.load(file)
 
