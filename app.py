@@ -11,7 +11,7 @@ data = pd.read_csv("Customer_Churn_EDA_Prediction\data\Customer-Churn-Records.cs
 df = data.head(5)
 
 #set title of the App
-st.title("Customer Churn Predictor")
+st.title("Bank Customer Churn Predictor")
 nav_options = ["Home", "Predictor", "Contact Us"]
 nav = st.sidebar.radio("Navigation", nav_options)
 
