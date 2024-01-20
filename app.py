@@ -6,8 +6,9 @@ import plotly.express as px
 import seaborn as sns
 from main_module import predict 
 
+
 # reading csv file
-data = pd.read_csv("Customer_Churn_EDA_Prediction\data\Customer-Churn-Records.csv")
+data = pd.read_csv(r"data\Customer-Churn-Records.csv")
 df = data.head(5)
 
 #set title of the App
