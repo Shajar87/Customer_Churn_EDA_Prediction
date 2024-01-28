@@ -13,4 +13,3 @@ def predict():
                     #print("\nPrediction about Customer:", prediction)
                     return prediction
 print("Prediction about the customer:", predict())
-print("done")
