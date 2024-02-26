@@ -1,7 +1,7 @@
 # Bank Customer Churn EDA and Prediction
 
 **Overview:**
-Bank Customer Churn EDA and Prediction is a data science project that combines exploratory data analysis (EDA) and predictive modeling to gain insights into customer behavior and forecast potential churn in the banking sector. The project utilizes machine learning algorithm "Random Forest", visualizations, and an interactive user interface to provide a comprehensive solution for understanding and addressing customer churn.
+Bank Customer Churn EDA and Prediction is a data science project that combines exploratory data analysis (EDA) and predictive modeling to gain insights into customer behavior and forecast potential churn in the banking sector. The project utilizes machine learning "Random Forest" technique, visualizations, and an interactive user interface to provide a comprehensive solution for understanding and addressing customer churn.
 
 
 **Dataset Used Review**
@@ -27,8 +27,8 @@ Bank Customer Churn EDA and Prediction is a data science project that combines e
 - Developed interactive visualizations for an intuitive exploration of churn-related insights.
 
 ### 3. Predictive Modeling:
-- Implemented a predictive model using the Random Forest machine learning algorithm.
-- Trained the model (Random Forest Based) on the historical customer data to forecast future churn risks.
+- Implemented a predictive model using the machine learning "Random Forest" technique.
+- Trained the model on the historical customer data to forecast future churn risks.
 - Evaluated model performance using relevant metrics.
 
 ### 4. Analysis Findings and Recommendations:
