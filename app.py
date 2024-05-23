@@ -148,7 +148,7 @@ You can see the prediction directly by clicking on the "**Show Prediction**" but
         st.write(f'## {pred_dic[prediction_scalar]}')
 
 '''
-else nav == 'Contact Us':
+else:
     st.write(f'### {"""Want to know more about us! Please fill out your details and submit it to us."""}')
     with st.container(border= True):
          
