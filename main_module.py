@@ -4,7 +4,7 @@ from prediction_module import make_prediction
 
 def predict():
                     # Load your dataset
-                    data = pd.read_csv(r'data\\entered_dataset.csv', encoding='utf-8')
+                    data = pd.read_csv(r'data\entered-dataset.csv', encoding='utf-8')
 
                     # Call prediction module 
                     prediction = make_prediction(data)
