@@ -12,4 +12,21 @@ def predict():
                     #print("Scaled Data Shape",scaled_data.shape)
                     #print("\nPrediction about Customer:", prediction)
                     return prediction
+
+def make_prediction(df):
+    try:
+
+        #Fill missing values if any
+        df.ffill(inplace=True)
+        # Load the pre-trained model
+        with open(r'model', 'rb') as file:
+            loaded_model = pickle.load(file)
+
+        # Make predictions
+        
+        rf_prediction = loaded_model.predict(df)
+        return rf_prediction
+    except Exception as e:
+        print(f"Error making prediction: {e}")
+        traceback.print_exc()
 print("Prediction about the customer:", predict())
