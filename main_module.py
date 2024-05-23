@@ -1,6 +1,7 @@
 # main_module.py
 import pandas as pd
-from prediction_module import make_prediction
+import pickle
+import traceback  
 
 def predict():
                     # Load your dataset
@@ -29,4 +30,3 @@ def make_prediction(df):
     except Exception as e:
         print(f"Error making prediction: {e}")
         traceback.print_exc()
-print("Prediction about the customer:", predict())
