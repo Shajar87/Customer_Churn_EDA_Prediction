@@ -8,7 +8,7 @@ from main_module import predict, make_prediction
 
 
 # reading csv file
-data = pd.read_csv(r'data\Customer-Churn-Records.csv')
+data = pd.read_csv(r'data\\Customer-Churn-Records.csv')
 df = data.head(5)
 
 #set title of the App
