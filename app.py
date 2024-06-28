@@ -96,7 +96,7 @@ Customers of age between 45 - 70 have higher tendency to leave the bank.
                     
 
 
-'''elif nav == "Predictor":
+elif nav == "Predictor":
     st.subheader(":red[Instructions Before Making Prediction:]")
     st.write("""1. Fill in the required values against each field.
 2. Ensure the entered values are accurate and in the appropriate format.
@@ -147,7 +147,7 @@ You can see the prediction directly by clicking on the "**Show Prediction**" but
         pred_dic = {0:"Customer will not churn.",1:"Customer will churn."}
         st.write(f'## {pred_dic[prediction_scalar]}')
 
-'''
+
 if nav == "Contact Us":
     st.write(f'### {"""Want to know more about us! Please fill out your details and submit it to us."""}')
     with st.container(border= True):
