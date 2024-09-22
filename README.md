@@ -26,6 +26,8 @@ Bank Customer Churn EDA and Prediction is a data science project that combines e
 - Visualized EDA results through a variety of charts and graphs.
 - Developed interactive visualizations for an intuitive exploration of churn-related insights.
 
+### To see detailed analysis, checkout the notebook:https://github.com/Shajar87/Customer_Churn_EDA_Prediction/blob/main/Bank_Customer_Churn_Analysis.ipynb
+
 ### 3. Predictive Modeling:
 - Implemented a predictive model using the machine learning "Random Forest" technique.
 - Trained the model on the historical customer data to forecast future churn risks.
